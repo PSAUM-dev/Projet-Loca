@@ -1,7 +1,15 @@
 import { Menu } from "lucide-react";
+import { useState } from "react";
 
 
 const Navbar = () => {
+
+    const [dropdownOpen, setDropdownOpen] =  useState(false);
+
+    function toggleDropdown() {
+        setDropdownOpen(!dropdownOpen);
+    }
+
     return (
         <div className="w-screen flex items-center justify-center h-20 xl:h-20 2xl:h-60 z-10 md:p-0 px-2 bg-blue-200">
 
@@ -15,7 +23,7 @@ const Navbar = () => {
 
                 <div className="flex gap-4">
 
-                    <div className="border-r border-gray-200 px-8">
+                    <div className=" px-8">
                         <ul className="hidden md:flex items-center space-x-4">
                             <li><a className="hover:bg-gray-200 transition-all duration-400 font-bold px-4 py-2 rounded-full" href="">Pharmacie</a></li>
                             <li><a className="hover:bg-gray-200 transition-all duration-400 px-4 py-2 rounded-full" href="">Service</a></li>
@@ -23,18 +31,17 @@ const Navbar = () => {
                         </ul>
                     </div>
 
-                    <div>
-                        <a href="#"><Menu /></a>
+                    <div className="flex md:hidden">
+                        <a href="#" onClick={() => toggleDropdown()}><Menu /></a>
                     </div>
 
                 </div>
 
-                <div className="absolute  bg-red-200 top-16 2xl:top-21 right-0 w-full p-5 md:w-[250px]">
-                    <ul>
-                        <li>test menu 1</li>
-                        <li>test menu 2</li>
-                        <li>test menu 3</li>
-                        <li>test menu 4</li>
+                <div className={`absolute bg-white rounded-lg top-16 2xl:top-21 right-0 w-full p-5 md:hidden md:w-[250px] ${ dropdownOpen ? '' : 'hidden' }`}>
+                    <ul className="grid gap-y-4">
+                        <li><a className="hover:bg-gray-200 transition-all duration-400 font-bold px-4 py-2 rounded-full" href="">Pharmacie</a></li>
+                        <li><a className="hover:bg-gray-200 transition-all duration-400 px-4 py-2 rounded-full" href="">Service</a></li>
+                        <li><a className="hover:bg-gray-200 transition-all duration-400 px-4 py-2 rounded-full" href="">À propos</a></li>
                     </ul>
                 </div>
 
