@@ -3,10 +3,11 @@ import './App.css'
 import Home from './pages/Home'
 import { useState } from 'react'
 import Services from './pages/Services'
+import Pharmacies from './pages/Pharmacies'
 
 function App() {
 
-  const [pageID, setPageID] =  useState('home');
+  const [pageID, setPageID] =  useState('homes');
 
   return (
     <div className='h-screen'>
@@ -20,7 +21,7 @@ function App() {
         {
            (pageID === 'home') ? (
             <Home />
-           ) : <Services />
+           ) : <Pharmacies />
         }
 
       </main>
