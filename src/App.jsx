@@ -1,32 +1,36 @@
-import Navbar from './components/sections/Navbar'
-import './App.css'
-import Home from './pages/Home'
-import { useState } from 'react'
-import Services from './pages/Services'
-import Pharmacies from './pages/Pharmacies'
+import "./App.css";
+
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/sections/Navbar.jsx";
+
+// Pages
+import Home from "./pages/Home.jsx";
+import Pharmacies from "./pages/Pharmacies.jsx";
+import Services from "./pages/Services.jsx";
+import About from "./pages/About.jsx";
 
 function App() {
 
-  const [pageID, setPageID] =  useState('homes');
 
   return (
-    <div className='h-screen'>
-
+    
+    <BrowserRouter>
+    
       <header>
-        <Navbar/>
+        <Navbar />
       </header>
 
       <main>
-        
-        {
-           (pageID === 'home') ? (
-            <Home />
-           ) : <Pharmacies />
-        }
-
+        <Routes>
+          <Route path="/"           element={<Home />} />
+          <Route path="/pharmacies" element={<Pharmacies />} />
+          <Route path="/services"   element={<Services />} />
+          <Route path="/about"      element={<About />} />
+        </Routes>
       </main>
 
-    </div>
+    </BrowserRouter>
+
   )
 }
 
