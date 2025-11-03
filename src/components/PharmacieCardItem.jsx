@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import pharmacyInterior from "../assets/images/Pharmacy inbterior.jpg";
 
 const PharmacieCardItem = () => {
     return (
         <div>
-            <a href="">
+            <Link to="/pharmacies">
                 <img className="rounded-lg transition-transform hover:rotate-1 duration-300 hover:scale-103" src={pharmacyInterior} alt="" />
 
             <div className="grid grid-cols-[80%_20%] justify-between mt-2">
@@ -18,7 +19,7 @@ const PharmacieCardItem = () => {
                 </p>
 
             </div>
-            </a>
+            </Link>
         </div>
     )
 }
