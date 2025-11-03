@@ -1,4 +1,5 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
+import useUserLocation from "./hooks/useUserLocation";
 
 const containersStyle = {
     width: '100%',
@@ -11,6 +12,10 @@ const center = {
 };
 
 const Map = () => {
+
+    const { location } = useUserLocation();
+    center.lat = parseFloat(location.latitude);
+    center.lng = parseFloat(location.longitude);
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API
@@ -29,13 +34,9 @@ const Map = () => {
     </div>;
 
     return (
-
         <GoogleMap mapContainerStyle={containersStyle} center={center} zoom={20} options={options}>
-
             <Marker position={center} />
-
         </GoogleMap>
-
     )
 }
 

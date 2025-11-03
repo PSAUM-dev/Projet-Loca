@@ -1,4 +1,4 @@
-import Map from "../components/services/Map";
+import Map from "../components/MapContainer";
 import PharmacyMapItem from "../components/PharmacyMapItem";
 
 const Pharmacies = () => {
@@ -15,7 +15,8 @@ const Pharmacies = () => {
 
           <input className="input rounded-2xl focus:shadow-0 focus:border-gray-200 focus:outline-none" type="text" name="" id="" placeholder="Recherche" />
 
-          <div className="grid grid-cols-[50%_50%] w-full">
+          <div className="grid grid-cols-[50%_50%] w-full gap-x-1">
+
             <select className="select w-full rounded-2xl focus:shadow-0 focus:border-gray-200 focus:outline-none open:border-gray-200 open:outline-none mt-4" name="" id="">
               <option value="">Ouvert maintenant</option>
               <option value="">Fermé</option>
@@ -26,6 +27,7 @@ const Pharmacies = () => {
               <option value="">Plus proche</option>
               <option value="">Plus éloigné</option>
             </select>
+
           </div>
 
         </div>
@@ -34,13 +36,13 @@ const Pharmacies = () => {
           <p>Consultez les <span className="font-bold">15</span> résultats.</p>
         </div>
 
-        <div class="overflow-hidden h-[405px] 2xl:h-[520px] overflow-y-scroll p-2">
+        <div className="overflow-hidden h-[405px] 2xl:h-[520px] overflow-y-scroll p-2">
 
-          <ul class="space-y-2">
+          <ul className="space-y-2">
 
             {
               Array.from({ length: 15 }).map((_, index) => (
-                <li key={index} class="border border-white hover:border-primary rounded-lg p-4 ">
+                <li key={index} className="border border-white hover:border-primary rounded-lg p-4 ">
                   <PharmacyMapItem />
                 </li>
               ))
