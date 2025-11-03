@@ -11,6 +11,7 @@ const Home = () => {
             </section>
 
             <section className='2xl:mt-10'>
+
                 <FeaturedPharmacies />
             </section>
         </Fragment>
