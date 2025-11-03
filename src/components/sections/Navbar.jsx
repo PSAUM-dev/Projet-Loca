@@ -46,7 +46,7 @@ const Navbar = () => {
 
                 </div>
 
-                <div className={`absolute bg-white rounded-lg top-16 2xl:top-21 right-0 w-full p-5 md:hidden md:w-[250px] ${dropdownOpen ? '' : 'hidden'}`}>
+                <div className={`absolute bg-white rounded-lg top-16 2xl:top-21 right-0 w-full z-10 p-5 md:hidden md:w-[250px] ${dropdownOpen ? '' : 'hidden'}`}>
                     <ul className="grid gap-y-4">
                         <li><NavbarLink text="Pharmacie" link="/pharmacies" /></li>
                         <li><NavbarLink text="Services" link="/services" /></li>
