@@ -1,6 +1,6 @@
 
 import { OctagonAlert, Search } from "lucide-react";
-import HeroImage from "../assets/images/services.png";
+import HeroImage from "../assets/images/Services.png";
 import { Link } from "react-router-dom";
 import ServiceCardItem from "../components/ServiceCardItem";
 
