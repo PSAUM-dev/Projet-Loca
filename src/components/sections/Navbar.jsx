@@ -11,7 +11,7 @@ const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const { location, loading, error } = useUserLocation();
 
-    console.info('Update la location de la nav', location, loading, error);
+    //console.info('Update la location de la nav', location, loading, error);
 
     function toggleDropdown() {
         setDropdownOpen(!dropdownOpen);
