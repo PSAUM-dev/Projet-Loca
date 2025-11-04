@@ -16,7 +16,7 @@ function App() {
     
     <BrowserRouter>
     
-      <header>
+      <header className="fixed top-0 left-0 md:static">
         <Navbar />
       </header>
 
