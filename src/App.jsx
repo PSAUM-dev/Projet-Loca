@@ -20,7 +20,7 @@ function App() {
         <Navbar />
       </header>
 
-      <main>
+      <main className="mt-16 md:mt-0">
         <Routes>
           <Route path="/"           element={<Home />} />
           <Route path="/pharmacies" element={<Pharmacies />} />
