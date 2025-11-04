@@ -1,21 +1,24 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
 import useUserLocation from "./hooks/useUserLocation";
+import { useEffect, useState } from "react";
 
 const containersStyle = {
     width: '100%',
     height: '100%'
 };
 
-const center = {
-    lat: 3.848,
-    lng: 11.502
-};
-
 const Map = () => {
 
+    const [center, setCenter] = useState({ lat: 4.848, lng: 11.502 });
     const { location } = useUserLocation();
-    center.lat = parseFloat(location.latitude);
-    center.lng = parseFloat(location.longitude);
+
+    useEffect(() => {
+
+        if (location.latitude && location.longitude) {
+           setCenter({ lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) });
+        }
+
+    }, [location]);
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API
@@ -24,7 +27,7 @@ const Map = () => {
     const options = {
         zoomControl: false,
         mapTypeControl: false,
-        streetViewControl: true,
+        streetViewControl: false,
         fullscreenControl: false,
         cameraControl : false
     };

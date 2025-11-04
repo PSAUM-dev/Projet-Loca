@@ -9,11 +9,14 @@ import useUserLocation from "../hooks/useUserLocation";
 const Navbar = () => {
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
-    const { location } = useUserLocation();
+    const { location, loading, error } = useUserLocation();
+
+    console.info('Update la location de la nav', location, loading, error);
 
     function toggleDropdown() {
         setDropdownOpen(!dropdownOpen);
     }
+
 
     return (
         <div className="w-screen flex items-center justify-center h-20 xl:h-20 2xl:h-60 z-10 md:p-0 px-2">
@@ -27,13 +30,31 @@ const Navbar = () => {
                     </span>
 
                     {
-                        (location.city) ? (
+                        (loading) ? (
+                            (
+
+                                <span className="flex items-center gap-2 bg-gray-200 py-1 px-2 rounded-xl">
+                                    <MapPinnedIcon className="w-4 h-4" />
+                                    <span className="loading loading-spinner w-5 h-auto bg-gray-400"></span>
+                                </span>
+
+                            )
+                        ) : (error) ? (
+                            (
+
+                                <span className="flex items-center gap-2 bg-red-200 py-1 px-2 rounded-xl">
+                                    <MapPinnedIcon className="w-4 h-4" />
+                                    <span className="hidden md:flex">Impossible de récupérer votre possition</span>
+                                    <span className="flex md:hidden">Erreur</span>
+                                </span>
+
+                            )
+                        ) : (
                             <span className="flex items-center gap-2 bg-gray-200 py-1 px-2 rounded-xl">
                                 <MapPinnedIcon className="w-4 h-4" />
-                                <span className="text-gray-700 text-sm">{location.rue} {location.city}, {location.country}</span>
+                                <span className="text-gray-700 text-sm">{location.rue} {location.city}</span>
                             </span>
-
-                        ) : ("")
+                        )
                     }
 
 
