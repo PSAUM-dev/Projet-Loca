@@ -1,6 +1,6 @@
 import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api"
-import useUserLocation from "./hooks/useUserLocation";
 import { useEffect, useState } from "react";
+import useUserLocation from "../hooks/useUserLocation";
 
 const containersStyle = {
     width: '100%',
@@ -37,7 +37,7 @@ const Map = () => {
     </div>;
 
     return (
-        <GoogleMap mapContainerStyle={containersStyle} center={center} zoom={20} options={options}>
+        <GoogleMap mapContainerStyle={containersStyle} center={center} zoom={16} options={options}>
             <Marker position={center} />
         </GoogleMap>
     )

@@ -1,7 +1,23 @@
+import { useEffect, useState } from "react";
 import Map from "../components/MapContainer";
 import PharmacyMapItem from "../components/PharmacyMapItem";
+import { getNearbyPharmaciesWith } from "../services/geminiService";
 
 const Pharmacies = () => {
+
+  const [pharmacies, setPharmacies] = useState([]);
+
+  useEffect(() => {
+
+    const getPharmacies = async () => {
+      const result = await getNearbyPharmaciesWith('any');
+      setPharmacies(result);
+    }
+
+    getPharmacies();
+
+  }, [])
+
   return (
 
     <div className="grid grid-cols px-2 md:px-0 md:grid-cols-[40%_60%]">
@@ -33,7 +49,7 @@ const Pharmacies = () => {
         </div>
 
         <div className="px-5">
-          <p>Consultez les <span className="font-bold">15</span> résultats.</p>
+          <p>Consultez les <span className="font-bold">{pharmacies.length}</span> résultats.</p>
         </div>
 
         <div className="overflow-hidden h-[405px] 2xl:h-[520px] overflow-y-scroll p-2">
@@ -41,11 +57,19 @@ const Pharmacies = () => {
           <ul className="space-y-2">
 
             {
-              Array.from({ length: 15 }).map((_, index) => (
-                <li key={index} className="border border-white hover:border-primary rounded-lg p-4 ">
-                  <PharmacyMapItem />
-                </li>
-              ))
+              (pharmacies.length > 0) ? (
+
+                pharmacies.map((pharmacy, index) => {
+                  return <li key={index} className="border border-white hover:border-primary rounded-lg p-4 ">
+                    <PharmacyMapItem pharmacy={pharmacy} />
+                  </li>
+                })
+
+              ) : (
+                <div className="bg-gray-50 flex justify-center items-center h-[380px] 2xl:h-[495px] w-full">
+                  <span className="loading loading-dots loading-sm"></span>
+                </div>
+              )
             }
 
           </ul>

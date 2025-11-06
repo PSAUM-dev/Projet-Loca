@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import NavbarLink from "./NavbarLink";
 import NavbarHomeLink from "./NavbarHomeLink";
-import useUserLocation from "../hooks/useUserLocation";
+import useUserLocation from "../../hooks/useUserLocation";
 
 
 const Navbar = () => {
