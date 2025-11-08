@@ -5,7 +5,9 @@ import { getNearbyPharmaciesWith } from "../services/geminiService";
 
 const Pharmacies = () => {
 
+  const [locationOnMap, setLocationOnMap] = useState({ lat: 4.848, lng: 11.502 });
   const [pharmacies, setPharmacies] = useState([]);
+  const [selectedPharm, setSelectedPharm] = useState(null);
 
   useEffect(() => {
 
@@ -22,7 +24,7 @@ const Pharmacies = () => {
 
     <div className="grid grid-cols px-2 md:px-0 md:grid-cols-[40%_60%]">
       <div className="absolute top-0 left-0 -z-10 w-screen h-screen">
-        <Map />
+        <Map location={locationOnMap} />
       </div>
 
       <div className="md:ml-20 md:w-[400px] mt-5 h-150 2xl:h-180 bg-white rounded-2xl shadow-lg">
@@ -60,8 +62,8 @@ const Pharmacies = () => {
               (pharmacies.length > 0) ? (
 
                 pharmacies.map((pharmacy, index) => {
-                  return <li key={index} className="border border-white hover:border-primary rounded-lg p-4 ">
-                    <PharmacyMapItem pharmacy={pharmacy} />
+                  return <li key={index}>
+                    <PharmacyMapItem id={index} setLocationOnMap={setLocationOnMap} pharmacy={pharmacy} currentPharm={selectedPharm} markAsSelected={setSelectedPharm} />
                   </li>
                 })
 

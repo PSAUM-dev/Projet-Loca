@@ -7,16 +7,16 @@ const containersStyle = {
     height: '100%'
 };
 
-const Map = () => {
+const Map = ({location = { lat: 4.848, lng: 12.502 }}) => {
 
-    const [center, setCenter] = useState({ lat: 4.848, lng: 11.502 });
-    const { location } = useUserLocation();
+    const [center, setCenter] = useState(location);
 
     useEffect(() => {
 
-        if (location.latitude && location.longitude) {
-           setCenter({ lat: parseFloat(location.latitude), lng: parseFloat(location.longitude) });
+        if (location.lat && location.lng) {
+           setCenter({ lat: parseFloat(location.lat), lng: parseFloat(location.lng) });
         }
+
 
     }, [location]);
 
