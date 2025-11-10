@@ -17,7 +17,7 @@ const PharmacyMapItem = ({ pharmacy, setLocationOnMap, markAsSelected, currentPh
     const lng = pharmacy.place.result.geometry.location.lng;
     const lat = pharmacy.place.result.geometry.location.lat;
 
-    console.info('Pharmacy Data', pharmacy);
+    //console.info('Pharmacy Data', pharmacy);
 
     const pharmacyState = [
         {

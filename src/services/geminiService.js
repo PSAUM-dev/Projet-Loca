@@ -69,10 +69,10 @@ export async function getNearbyPharmaciesWith(prompt, location = { latitude: 37.
     // Remove duplicates based on URI
     const uniquePharmacies = Array.from(new Map(pharmacies.map(p => [p.uri, p])).values());
 
-    return uniquePharmacies;
+    return {error : null, data : uniquePharmacies};
 
   } catch (error) {
-    console.error("Error calling Gemini API:", error);
-    throw new Error("Failed to fetch pharmacy data from Gemini API.");
+    
+    return {error : error, data : []};
   }
 }

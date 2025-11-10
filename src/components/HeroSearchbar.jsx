@@ -3,7 +3,7 @@ import HeroInput from "./form/HeroInput"
 
 import PharmacyMapItem from "../components/PharmacyMapItem";
 import { getNearbyPharmaciesWith } from "../services/geminiService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { X } from "lucide-react";
 
 const HeroSearchbar = () => {
@@ -11,30 +11,31 @@ const HeroSearchbar = () => {
     const [resultOpen, setResultOpen] = useState(false);
 
     const [isLoading, setIsLoading] = useState(false);
-    const [pharmaciesResult, setPharmaciesResult] = useState([]);
+    const [pharmaciesResult, setPharmaciesResult] = useState({error : null, data : []});
     const [searchLocation, setSearchLocation] = useState('');
     const [searchMedication, setSearchMedication] = useState('');
-
-    useEffect(() => {
-
-        if (searchLocation !== "" || searchMedication !== "")
-            setResultOpen(true);
-        else
-            setResultOpen(false);
-        
-
-    }, [searchLocation, searchMedication])
 
     const handleSearch = async () => {
 
         setIsLoading(true);
 
-        const pharmacies = await getNearbyPharmaciesWith(searchLocation)
-        console.info('all Promise', pharmacies);
+        const response = await getNearbyPharmaciesWith(searchLocation)
+        console.info('all Promise', response);
 
-        setPharmaciesResult(pharmacies);
+        if (!response.error) {
+            const pharmacies = response;
+            setPharmaciesResult(pharmacies);
+        }
+
         setIsLoading(false);
         setResultOpen(true);
+
+    }
+
+    const closeResultElement = () => {
+        setResultOpen(false);
+        setSearchLocation('');
+        setSearchMedication('');
     }
 
     return (
@@ -67,20 +68,20 @@ const HeroSearchbar = () => {
                     (resultOpen) ? (
                         <div className="absolute top-full mt-2 w-full h-auto z-9990 bg-white shadow-2xl rounded-2xl p-5">
                             <div className="flex justify-end mb-2">
-                                <button onClick={() => setResultOpen(false)} className="hover:bg-gray-200 transition-all duration-300 rounded-lg hover:cursor-pointer"><X /></button>
+                                <button onClick={closeResultElement} className="hover:bg-gray-200 transition-all duration-300 rounded-lg hover:cursor-pointer"><X /></button>
                             </div>
                             <div className=" max-h-[350px] overflow-y-hidden overflow-y-scroll">
-                                
-                                
+
+
 
                                 <ul>
 
                                     {
-                                        (pharmaciesResult.length > 0) ? (
+                                        (pharmaciesResult.data.length > 0) ? (
 
-                                            pharmaciesResult.map((pharmacy, index) => {
+                                            pharmaciesResult.data.map((pharmacy, index) => {
 
-                                                return <li key={index} className="border border-white hover:border-primary rounded-lg p-4 ">
+                                                return <li key={index} className="border border-white">
 
                                                     <PharmacyMapItem pharmacy={pharmacy} display={{
                                                         name: true,
@@ -97,11 +98,21 @@ const HeroSearchbar = () => {
 
                                         ) : (
 
-                                            <li>
-                                                <div className="w-full text-center">
-                                                    <p className="text-gray-500">Aucune pharmacie trouvée.</p>
-                                                </div>
-                                            </li>
+                                            (pharmaciesResult.error) ? (
+
+                                                <li>
+                                                    <div className="w-full text-center bg-red-200">
+                                                        <p className="text-gray-500">Impossible de joindre le serveur. Vérifiez votre connexion et réessayez</p>
+                                                    </div>
+                                                </li>
+
+                                            ) : (
+                                                <li>
+                                                    <div className="w-full text-center">
+                                                        <p className="text-gray-500">Aucune pharmacie trouvée.</p>
+                                                    </div>
+                                                </li>
+                                            )
 
                                         )
                                     }

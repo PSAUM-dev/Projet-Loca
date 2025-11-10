@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Map from "../components/MapContainer";
 import PharmacyMapItem from "../components/PharmacyMapItem";
 import { getNearbyPharmaciesWith } from "../services/geminiService";
+import { OctagonAlert } from "lucide-react";
 
 const Pharmacies = () => {
 
   const [locationOnMap, setLocationOnMap] = useState({ lat: 4.848, lng: 11.502 });
-  const [pharmacies, setPharmacies] = useState([]);
+  const [pharmacies, setPharmacies] = useState({ error: null, data: [] });
   const [selectedPharm, setSelectedPharm] = useState(null);
 
   useEffect(() => {
@@ -14,6 +15,8 @@ const Pharmacies = () => {
     const getPharmacies = async () => {
       const result = await getNearbyPharmaciesWith('any');
       setPharmacies(result);
+
+      console.info('LES PHARMACIES', result);
     }
 
     getPharmacies();
@@ -29,7 +32,7 @@ const Pharmacies = () => {
 
       <div className="md:ml-20 md:w-[400px] mt-5 h-150 2xl:h-180 bg-white rounded-2xl shadow-lg">
 
-        <div className="bg-zinc-200 flex flex-wrap justify-center p-5 rounded-2xl m-4">
+        <div className="bg-zinc-50 flex flex-wrap justify-center p-5 rounded-2xl m-4">
 
           <input className="input rounded-2xl focus:shadow-0 focus:border-gray-200 focus:outline-none" type="text" name="" id="" placeholder="Recherche" />
 
@@ -59,18 +62,28 @@ const Pharmacies = () => {
           <ul className="space-y-2">
 
             {
-              (pharmacies.length > 0) ? (
+              (pharmacies.data.length > 0) ? (
 
-                pharmacies.map((pharmacy, index) => {
+                pharmacies.data.map((pharmacy, index) => {
                   return <li key={index}>
                     <PharmacyMapItem id={index} setLocationOnMap={setLocationOnMap} pharmacy={pharmacy} currentPharm={selectedPharm} markAsSelected={setSelectedPharm} />
                   </li>
                 })
 
-              ) : (
-                <div className="bg-gray-50 flex justify-center items-center h-[380px] 2xl:h-[495px] w-full">
-                  <span className="loading loading-dots loading-sm"></span>
+              ) : (pharmacies.error !== null) ? (
+                <div className="bg-red-50 flex justify-center items-center h-[380px] 2xl:h-[495px] w-full">
+                  <div className="text-center">
+                    <OctagonAlert w-auto h-5/>
+                    <p className="text-red-500 mb-4">Nombre de requêtes vers le serveur trop élevé, réessayez dans quelques secondes</p>
+                    <a className="text-center" href="#">Réessayer</a>
+                  </div>
                 </div>
+              ) : (
+                (
+                  <div className="bg-gray-50 flex justify-center items-center h-[380px] 2xl:h-[495px] w-full">
+                    <span className="loading loading-dots loading-sm"></span>
+                  </div>
+                )
               )
             }
 
