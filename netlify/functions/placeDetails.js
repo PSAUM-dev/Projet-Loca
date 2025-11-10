@@ -2,7 +2,7 @@ export async function handler(event) {
 
   const { place_id } = event.queryStringParameters;
 
-  const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+  const apiKey = `AIzaSyB2aoVpuV6Nn0zq--Ydl6yc3nfLx-f_Ssc`;
 
   const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${place_id}&fields=name,formatted_address,formatted_phone_number,photos,opening_hours,rating,geometry&key=${apiKey}`;
 
