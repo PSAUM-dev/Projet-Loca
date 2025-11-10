@@ -73,8 +73,10 @@ const Pharmacies = () => {
               ) : (pharmacies.error !== null) ? (
                 <div className="bg-red-50 flex justify-center items-center h-[380px] 2xl:h-[495px] w-full">
                   <div className="text-center">
-                    <OctagonAlert w-auto h-5/>
-                    <p className="text-red-500 mb-4">Nombre de requêtes vers le serveur trop élevé, réessayez dans quelques secondes</p>
+                    <div className="w-full flex justify-center">
+                      <OctagonAlert w-auto h-5/>
+                    </div>
+                    <p className="text-red-500 mb-4">Impossible de récupérer la liste des pharmacies, réessayez dans quelques secondes</p>
                     <a className="text-center" href="#">Réessayer</a>
                   </div>
                 </div>

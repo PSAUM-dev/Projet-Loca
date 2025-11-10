@@ -1,6 +1,15 @@
 import { GoogleGenAI } from "@google/genai";
 const genAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
+const fetchPlaceDetails = async (placeId) => {
+  const res  = await fetch (`/.netlify/functions/placeDetails?place_id=${placeId}`);
+  const data = await res.json();
+
+  console.log('CORS PLACE', data);
+
+  return data;
+}
+
 async function getPharmacyPlaceData(placeId) {
   const finalPlaceId = placeId.split('/')[1];
   
@@ -62,7 +71,8 @@ export async function getNearbyPharmaciesWith(prompt, location = { latitude: 37.
         title: chunk.maps.title,
         uri: chunk.maps.uri,
         //place : await getPharmacyPlaceDataCorsAny(chunk.maps.placeId)
-        place : await getPharmacyPlaceData(chunk.maps.placeId)
+        //place : await getPharmacyPlaceData(chunk.maps.placeId)
+        place : await fetchPlaceDetails(chunk.maps.placeId)
       }))
     );
 
