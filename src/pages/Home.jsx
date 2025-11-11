@@ -4,6 +4,7 @@ import FeaturedPharmacies from "../components/FeaturedPharmacies"
 
 
 const Home = () => {
+
     return (
         <Fragment>
             <section className="h-full">
