@@ -1,16 +1,19 @@
-# React + Vite
+# PROJET LOCA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![React](https://img.shields.io/badge/React-19.2-58c4dc?logo=react&logoColor=white)](https://react.dev/)
+[![Vite](https://img.shields.io/badge/Vite-55e4dc?logo=vite&logoColor=white)](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react)
+[![Contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](#-contributing)
+[![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)](#)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📝 Overview
 
-## React Compiler
+**Projet Loca** is a modern and elegant task web application that help people to find nearest pharmacies to their current locations with medecines they are looking for [React JS](https://react.dev/).  
+It’s designed to help teams stay organized, plan projects, and collaborate efficiently — all within a clean and intuitive interface.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+(Editing soon...)
