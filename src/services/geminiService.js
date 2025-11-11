@@ -2,7 +2,8 @@ import { GoogleGenAI } from "@google/genai";
 const genAI = new GoogleGenAI({ apiKey: import.meta.env.VITE_GEMINI_API_KEY });
 
 const fetchPlaceDetails = async (placeId) => {
-  const res  = await fetch (`/.netlify/functions/placeDetails?place_id=${placeId}`);
+  const finalPlaceId = placeId.split('/')[1];
+  const res  = await fetch (`/.netlify/functions/placeDetails?place_id=${finalPlaceId}`);
   const data = await res.json();
 
   console.log('CORS PLACE', data);
