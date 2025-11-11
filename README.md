@@ -16,4 +16,4 @@ It’s designed to help teams stay organized, plan projects, and collaborate eff
 
 ## 🚀 Features
 
-(Editing soon...)
+( Editing soon... )
