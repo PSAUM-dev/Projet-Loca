@@ -72,8 +72,8 @@ export async function getNearbyPharmaciesWith(prompt, location = { latitude: 37.
         title: chunk.maps.title,
         uri: chunk.maps.uri,
         //place : await getPharmacyPlaceDataCorsAny(chunk.maps.placeId)
-        //place : await getPharmacyPlaceData(chunk.maps.placeId)
-        place : await fetchPlaceDetails(chunk.maps.placeId)
+        place : await getPharmacyPlaceData(chunk.maps.placeId)
+        //place : await fetchPlaceDetails(chunk.maps.placeId)
       }))
     );
 
